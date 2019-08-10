@@ -154,6 +154,13 @@
 									<directory>./src/main/webapp/${angularUI.name}/dist/${angularUI.name}</directory>
 									<!-- <directory>../angular6-client/dist/angular6-client</directory> -->
 								</resource>
+								<resource>
+									<directory>./src/main/webapp/${angularUI.name}/src</directory>
+									<!-- Include the testing page -->
+									<includes>
+										<include>testpage.html</include>
+									</includes>
+								</resource>
 							</resources>
 						</configuration>
 					</execution>

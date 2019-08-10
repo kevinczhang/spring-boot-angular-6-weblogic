@@ -5,11 +5,11 @@ bin/
 .gradle/
 .classpath
 
-# WebUI Builds
+# angular6-client Builds
 tmp/
-webui/dist
+dist/
 
-# WebUI dependencies
+# angular6-client dependencies
 node_modules/
 bower_components/
 
