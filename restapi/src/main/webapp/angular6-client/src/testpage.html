@@ -14,10 +14,6 @@
     <script>
         function myFunction() {
             // Open external links in a new window or tab.
-            var domain = window.location.hostname;
-            domain = domain.substring(domain.indexOf('.') + 1);
-            var not = '[href*="' + domain + '"]';
-            //$("a[href^='http']").not(not).attr('target','_blank');
             window.open('https://www.google.com/','winname','directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=400,height=350');
         }
     </script>
