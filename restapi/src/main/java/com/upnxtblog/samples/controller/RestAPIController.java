@@ -8,13 +8,14 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.upnxtblog.samples.dao.CustomerRepository;
 import com.upnxtblog.samples.model.Country;
 import com.upnxtblog.samples.model.Customer;
+import com.upnxtblog.samples.props.AppProperties;
+import com.upnxtblog.samples.props.GlobalProperties;
 
 @RestController
 public class RestAPIController {
@@ -25,9 +26,14 @@ public class RestAPIController {
 	@Autowired
     CustomerRepository customerRepository;
 	
-	@Value("${environment}")
-	private String env;
+//	@Value("${environment}")
+//	private String env;
 	
+    @Autowired
+    GlobalProperties global;	
+    
+    @Autowired
+    AppProperties appProp;
 	
 	@GetMapping("/api/hello")
 	public String hello() {
@@ -50,8 +56,18 @@ public class RestAPIController {
 		return customerRepository.findAll();
 	}
 	
-	@GetMapping("/api/env")
-	public String getEnv() {
-		return this.env;
+//	@GetMapping("/api/env")
+//	public String getEnv() {
+//		return this.env;
+//	}
+	
+	@GetMapping("/api/globalprop")
+	public String getGlobalProp() {
+		return this.global.getEmail();
+	}
+	
+	@GetMapping("/api/appprop")
+	public AppProperties getAppProp() {
+		return this.appProp;
 	}
 }
