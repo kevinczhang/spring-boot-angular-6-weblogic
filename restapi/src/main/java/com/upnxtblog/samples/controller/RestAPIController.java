@@ -1,6 +1,10 @@
 package com.upnxtblog.samples.controller;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -69,5 +73,19 @@ public class RestAPIController {
 	@GetMapping("/api/appprop")
 	public AppProperties getAppProp() {
 		return this.appProp;
+	}
+	
+	@GetMapping("/api/redirect")
+	public void redirect(HttpServletResponse response) {
+		try {
+			Cookie cookie = new Cookie("test", "test-data");
+			cookie.setDomain("localhost");
+			cookie.setPath("/demo-weblogic");
+			response.addCookie(cookie );
+			response.sendRedirect("/demo-weblogic");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
