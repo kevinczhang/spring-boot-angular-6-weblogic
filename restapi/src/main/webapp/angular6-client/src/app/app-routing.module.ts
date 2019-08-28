@@ -5,9 +5,11 @@ import { HomeComponent } from './components/home/home.component';
 import { UsersComponent } from './components/users/users.component';
 
 import { RouteResolver } from './resolvers/route.resolver';
+import { PrintLayoutComponent } from './components/print-layout/print-layout.component';
+import { InvoiceComponent } from './components/invoice/invoice.component';
 
 const routes: Routes = [
-  { 
+  {
     path: 'home', 
     pathMatch: 'full',
     component: HomeComponent
@@ -18,7 +20,15 @@ const routes: Routes = [
     resolve: {
       routeResolver: RouteResolver
     },
-  }, 
+  },
+  {
+    path: 'print',
+    outlet: 'print',
+    component: PrintLayoutComponent,
+    children: [
+      { path: 'invoice/:invoiceIds', component: InvoiceComponent }
+    ]
+  },
   {
     path: '**',
     redirectTo: '/',

@@ -8,12 +8,16 @@ import { HomeComponent } from './components/home/home.component';
 import { UsersComponent } from './components/users/users.component';
 import { CookieService } from 'ngx-cookie-service';
 import { UsersListService } from './service/users-list.service';
+import { PrintLayoutComponent } from './components/print-layout/print-layout.component';
+import { InvoiceComponent } from './components/invoice/invoice.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    UsersComponent
+    UsersComponent,
+    PrintLayoutComponent,
+    InvoiceComponent
   ],
   imports: [
     BrowserModule,

@@ -79,7 +79,6 @@ public class RestAPIController {
 	public void redirect(HttpServletResponse response) {
 		try {
 			Cookie cookie = new Cookie("test", "test-data");
-			cookie.setDomain("localhost");
 			cookie.setPath("/demo-weblogic");
 			response.addCookie(cookie );
 			response.sendRedirect("/demo-weblogic");
