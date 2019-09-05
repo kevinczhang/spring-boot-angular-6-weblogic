@@ -1,4 +1,23 @@
 <div [class.isPrinting]="printService.isPrinting">
+  <div class="header">
+
+    <!-- three dot menu -->
+    <div class="dropdown">
+      <!-- three dots -->
+      <ul class="dropbtn icons btn-right showLeft" (click)="showDropdown($event)">
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+      <!-- menu -->
+      <div id="myDropdown" class="dropdown-content" [hidden]="!showMenu">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+
+  </div>
   <h2>Angular Route Resolver Demo</h2>
   <ul class="nav">
     <li>
@@ -8,9 +27,9 @@
       <a routerLink="/users">Users</a>
     </li>
   </ul>
-  
+
   <button (click)="onPrintInvoice()">PRINT INVOICE</button>
-  
+
   <router-outlet></router-outlet>
   <router-outlet name="print"></router-outlet>
 </div>

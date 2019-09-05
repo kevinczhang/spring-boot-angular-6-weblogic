@@ -12,6 +12,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -40,8 +41,9 @@ public class RestAPIController {
     AppProperties appProp;
 	
 	@GetMapping("/api/hello")
-	public String hello() {
-		return "Hello world! >>> <a href='http://upnxtblog.com' target='_blank'>upnxtblog.com</a>";
+	public String hello(@RequestHeader("uid") String uid) {
+		return "Hello world! >>> <a href='http://upnxtblog.com' target='_blank'>upnxtblog.com</a> <br> " 
+					+ "uid header value: " + uid;
 	}
 	
 	// https://restcountries.eu/#api-endpoints-all
@@ -81,6 +83,7 @@ public class RestAPIController {
 			Cookie cookie = new Cookie("test", "test-data");
 			cookie.setPath("/demo-weblogic");
 			response.addCookie(cookie );
+			response.setHeader("uid", "user_7788");
 			response.sendRedirect("/demo-weblogic");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { PrintService } from './service/print.service';
 
@@ -10,9 +10,10 @@ import { PrintService } from './service/print.service';
 export class AppComponent implements OnInit {
 
   title = 'Upnxtblog Sample : This is Angular 6 Application';
+  showMenu = false;
 
   constructor( private cookieService: CookieService, 
-    public printService: PrintService ) {}
+    public printService: PrintService, private eRef: ElementRef) {}
 
   ngOnInit(): void {
     this.cookieService.set( 'appCookie', 'This is hello apps.' );
@@ -25,4 +26,15 @@ export class AppComponent implements OnInit {
     this.printService
       .printDocument('invoice', invoiceIds);
   }
+
+  showDropdown(event: Event) {
+    event.stopPropagation();
+    this.showMenu = !this.showMenu;
+  }
+
+  @HostListener('document:click', ['$event']) clickout(event) {
+    event.stopPropagation();
+    this.showMenu = false;
+  }
+
 }
