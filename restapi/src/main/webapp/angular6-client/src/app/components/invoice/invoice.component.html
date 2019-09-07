@@ -1,4 +1,9 @@
-<div class="invoice" *ngFor="let invoice of invoiceIds; let i = index">
+<!-- <div class="invoice" *ngFor="let invoice of invoiceIds; let i = index">
   <h1>Invoice Num. {{ invoice }}</h1>
   Amount: {{ (invoiceDetails[i] | async)?.amount }}
+</div> -->
+{{chatHistory.length}}
+
+<div *ngFor="let msg of chatHistory; let i = index">
+  {{msg.from}}: {{msg.content}}<br>  
 </div>
