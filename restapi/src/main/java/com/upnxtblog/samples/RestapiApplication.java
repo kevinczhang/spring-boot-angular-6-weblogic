@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.upnxtblog.samples.dao.CustomerRepository;
@@ -23,10 +24,10 @@ public class RestapiApplication implements CommandLineRunner {
     DataSource dataSource;
 
     @Autowired
-    CustomerRepository customerRepository;  
+    CustomerRepository customerRepository;    
 
 	public static void main(String[] args) {
-		SpringApplication.run(RestapiApplication.class, args);
+		ApplicationContext context = SpringApplication.run(RestapiApplication.class, args);		
 	}
 
 	@Transactional(readOnly = true)
