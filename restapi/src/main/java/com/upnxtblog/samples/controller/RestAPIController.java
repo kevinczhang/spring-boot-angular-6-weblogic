@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +31,8 @@ import com.upnxtblog.samples.props.GlobalProperties;
 
 @RestController
 public class RestAPIController {
+
+	private static final Logger logger = LogManager.getLogger(RestAPIController.class);
 	
 	@Autowired
 	private RestTemplate restTemplate;
@@ -52,7 +56,8 @@ public class RestAPIController {
     MySessionBean mySessionBean;
 	
 	@GetMapping("/api/hello")
-	public String hello(@RequestHeader("uid") String uid) {		
+	public String hello(@RequestHeader("uid") String uid) {
+		logger.info("Testing logging");
 		return "Hello world! >>> <a href='http://upnxtblog.com' target='_blank'>upnxtblog.com</a> <br> " 
 					+ "uid header value: " + uid;
 	}

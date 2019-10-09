@@ -30,3 +30,5 @@ typings/
 **/.classpath
 **/.metadata
 **/Thumbs.db
+*.iml
+restapi/logs/
