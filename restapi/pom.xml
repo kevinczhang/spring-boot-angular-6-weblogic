@@ -19,13 +19,44 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
-		<angularUI.name>angular6-client</angularUI.name>
-		<start-class>com.upnxtblog.samples.RestapiApplication</start-class>
-	</properties>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <!-- Active this profile if run "mvn install -Denvironemt=dev" -->
+            <activation>
+      			<property>
+        			<name>environment</name>
+        			<value>dev</value>
+      			</property>
+    		</activation>
+    		<properties>
+				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+				<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+				<java.version>1.8</java.version>
+				<angularUI.name>angular6-client</angularUI.name>
+				<start-class>com.upnxtblog.samples.RestapiApplication</start-class>
+<!--				<hostname>${env.HOSTNAME}</hostname>-->
+				<hostname>${env.COMPUTERNAME}</hostname>
+			</properties>
+        </profile>
+        <profile>
+            <id>local</id>
+            <!-- Active this profile if run "mvn install" where environment is undefined -->
+            <activation>
+      			<property>
+        			<name>!environment</name>
+      			</property>
+    		</activation>
+    		<properties>
+				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+				<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+				<java.version>1.8</java.version>
+				<angularUI.name>angular6-client</angularUI.name>
+				<start-class>com.upnxtblog.samples.RestapiApplication</start-class>
+				<hostname>${env.COMPUTERNAME}</hostname>
+			</properties>
+        </profile>
+    </profiles>	
 
 	<dependencies>
 		<dependency>
@@ -134,6 +165,24 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<echo>[angularUI.name]: ${angularUI.name}</echo>
+								<echo>[hostname]: ${hostname}</echo>
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
